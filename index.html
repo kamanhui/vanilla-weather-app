@@ -13,16 +13,17 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="src/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
   </head>
   <body>
     <div class="container">
       <div class="weather-app-wrapper">
         <div class="weather-app">
           <div class="overview">
-            <h1>New York</h1>
+            <h1 id="main-city">New York</h1>
             <ul>
-              <li>Friday 05:00</li>
-              <li>Sunny</li>
+              <li id="main-time">Friday 05:00</li>
+              <li id="main-description">Sunny</li>
             </ul>
           </div>
           <div class="row">
@@ -33,16 +34,18 @@
                   src="https://cdn-icons-png.flaticon.com/512/3222/3222800.png"
                   alt="Sunny"
                 />
-                <strong>12</strong>
+                <strong id="main-temperature">12</strong>
                 <span class="main-weather-units">°C | <a href="#">°F</a></span>
               </div>
             </div>
 
             <div class="col-6">
               <ul>
-                <li>Precipitation: 0%</li>
-                <li>Humidity: 73%</li>
-                <li>Wind: 2 km/h</li>
+                <li>
+                  Humidity:
+                  <span id="main-humidity">73</span>%
+                </li>
+                <li>Wind: <span id="main-wind">2</span> km/h</li>
               </ul>
             </div>
           </div>
