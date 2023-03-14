@@ -22,10 +22,6 @@ li {
   margin: 0;
 }
 
-#main-weather-icon {
-  width: 15%;
-}
-
 .weather-app-wrapper {
   max-width: 600px;
   margin: 30px auto;
@@ -35,4 +31,23 @@ li {
   padding: 20px;
   border: 1px solid lightgrey;
   border-radius: 5px;
+}
+
+.overview {
+  margin-bottom: 20px;
+}
+
+.weather-temperature img {
+  width: 18%;
+  margin-right: 5px;
+}
+
+.weather-temperature strong {
+  font-size: 48px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.weather-temperature .main-weather-units {
+  font-size: 14px;
 }
