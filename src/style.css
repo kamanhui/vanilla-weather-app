@@ -1,4 +1,7 @@
 h1 {
   color: orange;
-  text-align: center;
+}
+
+#main-weather-icon {
+  width: 15%;
 }
