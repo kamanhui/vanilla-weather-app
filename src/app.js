@@ -22,6 +22,8 @@ function formatDate(timestamp) {
 }
 
 function displayTemperature(response) {
+  mainCelsius = response.data.main.temp;
+
   let mainTemperature = document.querySelector("#main-temperature");
   mainTemperature.innerHTML = Math.round(response.data.main.temp);
 
@@ -46,6 +48,7 @@ function displayTemperature(response) {
     "src",
     `https://openweathermap.org/img/wn/${iconId}@2x.png`
   );
+
   mainWeatherIcon.setAttribute("alt", response.data.weather[0].description);
 }
 
@@ -62,7 +65,32 @@ function citySubmit(event) {
   citySearch(cityInput.value);
 }
 
-citySearch("Toronto");
+function showFahrenheit(event) {
+  event.preventDefault();
+  let Fah = (mainCelsius * 9) / 5 + 32;
+  let mainTemperature = document.querySelector("#main-temperature");
+  mainTemperature.innerHTML = Math.round(Fah);
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+}
+
+function showCelsius(event) {
+  event.preventDefault();
+  let mainTemperature = document.querySelector("#main-temperature");
+  mainTemperature.innerHTML = Math.round(mainCelsius);
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+}
+
+let mainCelsius = null;
 
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", citySubmit);
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", showFahrenheit);
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", showCelsius);
+
+citySearch("Toronto");
