@@ -43,8 +43,10 @@ li:first-letter {
 }
 
 .weather-temperature img {
-  width: 18%;
-  margin-right: 5px;
+  width: 35%;
+  margin-left: -20px;
+  margin-top: -22px;
+  margin-right: -10px;
 }
 
 .weather-temperature strong {
