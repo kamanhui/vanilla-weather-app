@@ -94,3 +94,27 @@ let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", showCelsius);
 
 citySearch("Toronto");
+
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row">`;
+  let forecastDays = ["Fri", "Sat", "Sun", "Mon", "Tue", "Wed"];
+  forecastDays.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+            <div class="col-2">
+              <div class="forecast-day">${day}</div>
+              <img src="#" alt="" />
+              <div class="forecast-temperature">
+                <span class="forecast-temperature-max">8°</span>
+                <span class="forecast-temperature-min">-2°</span>
+              </div>
+            </div>    
+        `;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
+displayForecast();
