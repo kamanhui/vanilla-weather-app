@@ -21,6 +21,36 @@ function formatDate(timestamp) {
   return `${day} ${hours}:${minutes}`;
 }
 
+function getForecast(coordinates) {
+  let apiKey = "8cac06f7ab6c10287cd06a316ff84a57";
+  let latitude = coordinates.lat;
+  let longitude = coordinates.lon;
+  let forecastApiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+  axios.get(forecastApiUrl).then(displayForecast);
+}
+
+function displayForecast(response) {
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row">`;
+  let forecastDays = ["Fri", "Sat", "Sun", "Mon", "Tue", "Wed"];
+  forecastDays.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+            <div class="col-2">
+              <div class="forecast-day">${day}</div>
+              <img src="#" alt="" />
+              <div class="forecast-temperature">
+                <span class="forecast-temperature-max">8°</span>
+                <span class="forecast-temperature-min">-2°</span>
+              </div>
+            </div>    
+        `;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function displayTemperature(response) {
   mainCelsius = response.data.main.temp;
 
@@ -50,6 +80,8 @@ function displayTemperature(response) {
   );
 
   mainWeatherIcon.setAttribute("alt", response.data.weather[0].description);
+
+  getForecast(response.data.coord);
 }
 
 function citySearch(cityInput) {
@@ -94,27 +126,5 @@ let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", showCelsius);
 
 citySearch("Toronto");
-
-function displayForecast() {
-  let forecastElement = document.querySelector("#forecast");
-  let forecastHTML = `<div class="row">`;
-  let forecastDays = ["Fri", "Sat", "Sun", "Mon", "Tue", "Wed"];
-  forecastDays.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
-            <div class="col-2">
-              <div class="forecast-day">${day}</div>
-              <img src="#" alt="" />
-              <div class="forecast-temperature">
-                <span class="forecast-temperature-max">8°</span>
-                <span class="forecast-temperature-min">-2°</span>
-              </div>
-            </div>    
-        `;
-  });
-  forecastHTML = forecastHTML + `</div>`;
-  forecastElement.innerHTML = forecastHTML;
-}
 
 displayForecast();
